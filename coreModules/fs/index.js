@@ -15,15 +15,6 @@ const fs = require('fs'); // to import fs module //
 // // })
 
 
-// try {
-//     const data = fs.readFileSync('sample.txt','utf8');
-//     console.log(data);
-    
-// }
-// catch(err) {
-//     console.log('error: ', err);
-    
-// }
 
 
 
@@ -99,4 +90,57 @@ const fs = require('fs'); // to import fs module //
 // });
 
 
+// try catch //
 
+// try {
+//     fs.mkdirSync('myFolder');
+//     console.log('folder created');
+    
+// }
+// catch (err) {
+//     console.log('error: ',err);
+    
+// }
+
+
+// try {
+//     fs.writeFileSync('myFolder/new.txt', 'helo node.js');
+//         console.log('folder created');
+        
+// }
+// catch (err) {
+//     console.log('error: ', err);
+    
+// }
+
+// try {
+//     const data = fs.readFileSync('sample.txt','utf8');
+//     console.log(data);
+    
+// }
+// catch(err) {
+//     console.log('error: ', err);
+    
+// }
+
+
+// try {
+//     fs.appendFileSync('myFolder/new.txt','\nWelcome to Node.js')
+//         console.log('attached new data');
+        
+// }
+// catch (err) {
+//     console.log('error: ', err);
+    
+// }
+
+
+try {
+    fs.unlinkSync('myFolder/new.txt')
+        console.log('file deleted');
+        
+}
+catch (err) {
+    console.log('error: ',err);
+    
+}
