@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const http = require('http');
-const { text } = require('stream/consumers');
 const url = require('url');
 
 
@@ -28,6 +27,19 @@ const server = http.createServer((req,res)=> {
                     res.end()
                 }
                 else{
+                    res.writeHead(200, {'content-type':'text/html'})
+                    res.end(data)
+                }
+            })
+        }
+
+        else if(newUrl.pathname === '/contact') {
+            fs.readFile('contact.html', (err,data)=> {
+                if(err) {
+                    res.writeHead(404, {'content-type':'text/html'})
+                    res.end()
+                }
+                else {
                     res.writeHead(200, {'content-type':'text/html'})
                     res.end(data)
                 }
