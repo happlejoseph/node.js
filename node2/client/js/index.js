@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { get } = require("node:http")
 
 
@@ -29,3 +30,8 @@ function getStudents() {
 }
 
 getStudents()
+=======
+
+
+console.log('helo node js');
+>>>>>>> 715fdda502612675a72b4ea5687db8601a38f8db
