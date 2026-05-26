@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "node2",
-=======
   "name": "server",
->>>>>>> 715fdda502612675a72b4ea5687db8601a38f8db
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
