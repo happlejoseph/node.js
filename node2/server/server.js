@@ -4,7 +4,7 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 
-const {MongoClient} = require('mongobd')
+const {MongoClient} = require('mongodb')
 
         
 const port = 3001
@@ -14,7 +14,7 @@ const client = new MongoClient('mongodb://127.0.0.1:27017/')
 const app = http.createServer((req,res)=> {
 
     // creating database //
-    const bd = client.db('Institute')
+    const db = client.db('Institute')
 
     // creating collection //
     const collection = db.collection('student')
@@ -30,10 +30,17 @@ const app = http.createServer((req,res)=> {
         res.end(fs.readFileSync('../client/js/index.js'))
     }
 
-    else if(pathname === '/pages/addStudent.html')
+    else if(pathname === '/pages/addStudent.html') {
         res.writeHead(200, {"content-type":'text/html'})
-        res.end(fs.readFileSync('../client/pages/addStudent'))
+        res.end(fs.readFileSync('../client/pages/addStudent.html'))
+    }
+
+    // form submit //
+    if(pathname === '/submit' && req.method === 'POST') {
+    console.log('form submited');
+    }
 })
+
 
 
 app.listen(port,()=> {
