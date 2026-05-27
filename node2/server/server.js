@@ -62,6 +62,20 @@ const app = http.createServer((req,res)=> {
             })
             
         })
+
+        res.writeHead(201, {"content-type":'text/html'})
+        res.end(fs.readFileSync('../client/index.html'))
+    }
+
+    // fetch students //
+    if(pathname === '/getstudents' && req.method === 'GET') {
+        console.log('students');
+        const data = await collection.find().toArray()
+        console.log(data);
+        res.writeHead(200, {"content-type":'text/json'})
+        res.end(JSON.stringify(data))
+        
+        
     }
 })
 
