@@ -3,6 +3,7 @@
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
+const queryString = require('querystring')
 
 const {MongoClient} = require('mongodb')
 
@@ -37,7 +38,30 @@ const app = http.createServer((req,res)=> {
 
     // form submit //
     if(pathname === '/submit' && req.method === 'POST') {
-    console.log('form submited');
+        // console.log('form submited');
+
+        let body = ""
+        req.on('data',(chunks)=> {
+            console.log('Inside data event')
+            console.log(chunks);
+            body += chunks.toString()
+            console.log(body);
+            
+        })
+
+        req.on('end',()=> {
+            console.log('Inside end event')
+            const formData = queryString.parse(body)
+            console.log(formData);
+            collection.insertOne(formData).then(()=> {
+                console.log('data is added successfully');
+                
+            })
+            .catch((err)=> {
+                console.log(err);
+            })
+            
+        })
     }
 })
 
