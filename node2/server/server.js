@@ -12,7 +12,7 @@ const port = 3001
 
 const client = new MongoClient('mongodb://127.0.0.1:27017/')
 
-const app = http.createServer((req,res)=> {
+const app = http.createServer(async(req,res)=> {
 
     // creating database //
     const db = client.db('Institute')
