@@ -77,6 +77,44 @@ const app = http.createServer(async(req,res)=> {
         
         
     }
+
+    if(pathname === "/updateServer" && req.method === "PUT") {
+        console.log('update code');
+
+        let body = "";
+        req.on('data',(chunks)=> {
+            body += chunks.toString();
+            console.log(body);
+            
+        });
+
+        req.on('end',()=> {
+            let data = JSON.parse(body);
+            const _id = new Object(data.id);
+            console.log(_id);
+
+            let updateData = {
+                name: data.name,
+                class: data.class,
+                rno: data.rno,
+            };
+
+            collection.updateOne({_id}, {$set: updateData})
+            .then(()=> {
+                res.writeHead(200, {'content-type':'text/json'})
+                res.end('success');
+            })
+            .catch((err)=> {
+                console.log(err);
+                res.writeHead(200, {'content-Type':'text/json'});
+                res.end('failed');
+                
+
+            })
+            
+        })
+        
+    }
 })
 
 

@@ -63,3 +63,36 @@ async function getStudents() {
             `
     })    
 }
+
+
+// edit //
+async function handleEdit(id) {
+    console.log(id);
+
+    const name = document.getElementById(`name-${id}`).value
+    const rno = document.getElementById(`rno-${id}`).value
+    const classs = document.getElementById(`class-${id}`).value
+
+    let data = {id,name,rno,class:classs}
+    console.log(data);
+
+    const jsonData = JSON.stringify(data)
+    const res = await fetch('http://localhost:3001/updateStudent', {
+        method : 'PUT',
+        'Content-Type':'text/json',
+        'body':'jsonData',
+    })
+
+    const message = await res.text()
+    console.log(message);
+    
+    if(message === 'success') {
+        alert('data updated successfull')
+    }
+    else {
+        alert('data updation failed')
+    }
+    
+    
+    
+}
