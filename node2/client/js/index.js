@@ -96,3 +96,23 @@ async function handleEdit(id) {
     
     
 }
+
+// delete //
+async function handleDelete(id) {
+    const res = await fetch('http://localhost:3001/delteStudent', {
+        method:'DELETE',
+        'Content-Type':'text/json',
+        'body':JSON.stringify({id}),
+    })
+    const message = await res.text()
+    console.log(message);
+
+    if(message === 'success') {
+        alert('data deleted successfull')
+    }
+    else {
+        alert('data deletion failed')
+    }
+    
+}
+

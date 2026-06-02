@@ -77,8 +77,8 @@ const app = http.createServer(async(req,res)=> {
         
         
     }
-
-    if(pathname === "/updateServer" && req.method === "PUT") {
+ // edit //
+    if(pathname === "/updateStudent" && req.method === "PUT") {
         console.log('update code');
 
         let body = "";
@@ -114,6 +114,32 @@ const app = http.createServer(async(req,res)=> {
             
         })
         
+    }
+
+    // delete //
+    if(pathname === '/deleteStudent' && req.method === 'DELETE') {
+        let body = ""
+        req.on('data', (chunks)=> {
+            body+= chunks.toString();
+            console.log(body);
+            
+        });
+
+        res.on('end',()=> {
+            let data = JSON.parse(body)
+            const _id = new Object(data.id)
+            collection.deleteOne({_id})
+            .then(()=> {
+                res.writeHead(200, {'content-type':'text/plain'})
+                res.end('success');
+            })
+            .catch((err)=> {
+                console.log(err);
+                res.writeHead(200,{'content-type':'text/plain'})
+                res.end('failed')
+                
+            })
+        })
     }
 })
 
